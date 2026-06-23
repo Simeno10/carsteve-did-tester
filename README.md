@@ -1,11 +1,11 @@
 # CarSteve DID Tester
 
-Automated tool for validating DID (Data Identifier) availability in ECU using CarSteve.
+Automated tool for validating DID (Data Identifier) availability in ECU.
 
 ## 🔥 Features
 
 - ✅ GUI application (Tkinter)
-- ✅ Automated DID search in CarSteve
+- ✅ Automated DID search
 - ✅ Progress bar and live log
 - ✅ Pause / Resume (F6)
 - ✅ Stop + Export (F7 or GUI button)
@@ -18,10 +18,10 @@ Automated tool for validating DID (Data Identifier) availability in ECU using Ca
 
 ## 🧠 How it works
 
-1. Load scan file (.txt exported from Silver Scan Tool)
-2. Select ECU (e.g. `ECM`)
+1. Load scan file (.txt exported from Tool)
+2. Select ECU
 3. Script extracts all supported DIDs
-4. Automation interacts with CarSteve:
+4. Automation interacts with specific program:
    - enters DID
    - clicks "Find Next"
    - detects "Not Found" popup
