@@ -226,6 +226,7 @@ def run_test():
 
         progress["value"] = i + 1
         root.update_idletasks()
+        progress_label.config(text=f"{int((i + 1) / len(dids) * 100)}%")
 
         time.sleep(3)
 
@@ -265,10 +266,13 @@ Button(root, text="STOP", command=stop_test).grid(row=2, column=2)
 progress = Progressbar(root, length=300)
 progress.grid(row=3, column=0, columnspan=3)
 
-output = Text(root, height=20, width=70)
-output.grid(row=4, column=0, columnspan=3)
+progress_label = Label(root, text="0%")
+progress_label.grid(row=4, column=0, columnspan=3)
 
-Label(root, text="F6 = Pause/Resume | F7 = Stop").grid(row=5, column=0, columnspan=3)
+output = Text(root, height=20, width=70)
+output.grid(row=5, column=0, columnspan=3)
+
+Label(root, text="F6 = Pause/Resume | F7 = Stop").grid(row=6, column=0, columnspan=3)
 
 # ✅ GLOBAL HOTKEYS (NAJWAŻNIEJSZE)
 keyboard.add_hotkey("f6", toggle_pause)
