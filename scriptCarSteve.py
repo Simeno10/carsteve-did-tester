@@ -5,6 +5,7 @@ import threading
 import json
 import re
 from tkinter import Tk, Label, Button, Entry, Text, filedialog, StringVar
+from tkinter.filedialog import asksaveasfilename
 from tkinter.ttk import Progressbar, Combobox
 from openpyxl import Workbook
 
@@ -106,12 +107,41 @@ def save_excel(missing, all_dids):
 
 
 def save_report(missing, all_dids):
-    with open("missing_dids.txt", "w") as f:
+
+    # ✅ wybór nazwy pliku TXT
+    txt_path = asksaveasfilename(
+        defaultextension=".txt",
+        filetypes=[("Text files", "*.txt")],
+        title="Zapisz missing DIDy"
+    )
+
+    if not txt_path:
+        log("❌ Anulowano zapis")
+        return
+
+    # ✅ zapis TXT
+    with open(txt_path, "w") as f:
         for d in missing:
             f.write(d + "\n")
 
-    save_excel(missing, all_dids)
-    log("📄 Raport zapisany")
+    log(f"📄 Zapisano: {txt_path}")
+
+    # ✅ Excel w tej samej lokalizacji
+    excel_path = txt_path.replace(".txt", ".xlsx")
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "DID Report"
+
+    ws.append(["DID", "Status"])
+
+    for did in all_dids:
+        status = "MISSING" if did in missing else "OK"
+        ws.append([did, status])
+
+    wb.save(excel_path)
+
+    log(f"📊 Zapisano: {excel_path}")
 
 
 # ===== HOTKEYS =====
