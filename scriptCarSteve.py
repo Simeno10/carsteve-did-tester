@@ -4,6 +4,8 @@ import keyboard
 import threading
 import json
 import re
+import os
+from tkinter import PhotoImage
 from tkinter import Tk, Label, Button, Entry, Text, filedialog, StringVar
 from tkinter.filedialog import asksaveasfilename
 from tkinter.ttk import Progressbar, Combobox
@@ -276,7 +278,12 @@ def choose_file():
 
 # ===== GUI =====
 root = Tk()
-root.title("DID Checker PRO")
+
+icon_path = os.path.join(os.getcwd(), "icon.png")
+icon = PhotoImage(file=icon_path)
+root.iconphoto(True, icon)
+
+root.title("CarSteve")
 
 Label(root, text="Plik:").grid(row=0, column=0)
 file_entry = Entry(root, width=40)
