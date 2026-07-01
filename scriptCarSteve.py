@@ -17,7 +17,6 @@ HISTORY_FILE = "ecu_history.json"
 paused = False
 stop_requested = False
 
-
 # ===== LOG =====
 def log(msg):
     output.insert("end", msg + "\n")
